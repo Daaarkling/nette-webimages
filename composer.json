@@ -1,5 +1,5 @@
 {
-    "name": "daaarkling/nette-webimages",
+    "name": "darkling/nette-webimages",
     "description": "On-the-fly generated web images for your Nette app",
     "type": "library",
     "keywords": [
