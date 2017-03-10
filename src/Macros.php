@@ -42,7 +42,12 @@ class Macros extends Latte\Macros\MacroSet
 	public static function prepareArguments(array $arguments)
 	{
 		foreach ($arguments as $key => $value) {
-			if ($key === 0 && !isset($arguments['id'])) {
+			if ($key === 0 && is_array($value)) {
+				foreach ($value as $k => $val) {
+					$arguments[$k] = $val;
+				}
+				unset($arguments[$key]);
+			} elseif ($key === 0 && !isset($arguments['id'])) {
 				$arguments['id'] = $value;
 				unset($arguments[$key]);
 			} elseif ($key === 1 && !isset($arguments['width'])) {
@@ -53,7 +58,6 @@ class Macros extends Latte\Macros\MacroSet
 				unset($arguments[$key]);
 			}
 		}
-
 		return $arguments;
 	}
 

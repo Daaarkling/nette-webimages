@@ -10,6 +10,7 @@ use Nette;
 use Nette\Application;
 use Nette\Http;
 use Nette\Utils\Image;
+use Nette\Utils\Strings;
 
 
 class Generator extends Nette\Object
@@ -88,6 +89,9 @@ class Generator extends Nette\Object
 		}
 
 		$destination = $this->wwwDir . '/' . $this->httpRequest->getUrl()->getRelativeUrl();
+		if (Strings::contains($destination, '?')) {
+			$destination = substr($destination, 0, strpos($destination, '?'));
+		}
 
 		$dirname = dirname($destination);
 		if (!is_dir($dirname)) {

@@ -8,6 +8,7 @@ namespace DotBlue\WebImages;
 
 use Nette\Application\Routers\Route as NetteRoute;
 use Nette\DI;
+use Nette\Utils\Strings;
 
 
 class Extension extends DI\CompilerExtension
@@ -101,7 +102,8 @@ class Extension extends DI\CompilerExtension
 					}
 				}
 
-				if ($parameter = $this->recognizeMaskParameter($definition['format'])) {
+				//if ($parameter = $this->recognizeMaskParameter($definition['format'])) {
+				if ($parameter = $this->maskContainsFormatParameter($definition['mask'])) {
 					$route->addSetup('setFormatParameter', [
 						$parameter,
 					]);
@@ -167,6 +169,17 @@ class Extension extends DI\CompilerExtension
 	{
 		if ((substr($value, 0, 1) === '<') && (substr($value, -1) === '>')) {
 			return substr($value, 1, -1);
+		}
+	}
+
+	/**
+	 * @param  string
+	 * @return string|NULL
+	 */
+	private function maskContainsFormatParameter($mask)
+	{
+		if (Strings::contains($mask, '<format>')) {
+			return 'format';
 		}
 	}
 
