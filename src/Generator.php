@@ -106,7 +106,7 @@ class Generator extends Nette\Object
 			throw new Application\BadRequestException;
 		}
 
-		$image->send();
+		$image->send($format);
 		exit;
 	}
 
