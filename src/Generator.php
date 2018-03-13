@@ -13,8 +13,9 @@ use Nette\Utils\Image;
 use Nette\Utils\Strings;
 
 
-class Generator extends Nette\Object
+class Generator
 {
+	use Nette\SmartObject;
 
 	const FORMAT_JPEG = Image::JPEG;
 	const FORMAT_PNG = Image::PNG;
